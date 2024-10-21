@@ -5,16 +5,16 @@ using Microsoft.Extensions.Logging;
 
 namespace FunctionAppDemo
 {
-    public class Function1
+    public class BlobTriggerFunction
     {
-        private readonly ILogger<Function1> _logger;
+        private readonly ILogger<BlobTriggerFunction> _logger;
 
-        public Function1(ILogger<Function1> logger)
+        public BlobTriggerFunction(ILogger<BlobTriggerFunction> logger)
         {
             _logger = logger;
         }
 
-        [Function(nameof(Function1))]
+        [Function(nameof(BlobTriggerFunction))]
         public async Task Run([BlobTrigger("blob-1710/{name}", Connection = "AzureWebJobsStorage")] Stream stream, string name)
         {
             using var blobStreamReader = new StreamReader(stream);
